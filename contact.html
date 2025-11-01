@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Pogue Calvert LLP — Schedule Your Consultation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --nav-color: 0,33,71;
+      --accent: #002b5c;
+      --muted: #6b7280;
+    }
+
+    body {
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color: #111827;
+      background: #fff;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: rgba(var(--nav-color),0);
+      transition: background-color .45s ease, box-shadow .35s ease;
+    }
+    .navbar.nav-visible {
+      background-color: rgba(var(--nav-color),0.82);
+      box-shadow: 0 6px 18px rgba(189,191,197,.12);
+      backdrop-filter: blur(6px);
+    }
+    .navbar-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.95) !important;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 45vh;
+      color: #fff;
+      background: url('contact.jpg') center/cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0,0,0,0.45);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem,4vw,3rem);
+      margin: 0 0 .5rem;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+
+    /* SECTIONS */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+    }
+    .contact-bar {
+      background: #f6f8fb;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      padding: 2.2rem 0;
+    }
+    .contact-details {
+      font-size: 1.08rem;
+      margin-bottom: 2rem;
+    }
+    .form-control, .form-select {
+      border-radius: .5rem;
+      border: 1px solid #ccd1d9;
+    }
+    .btn-primary {
+      background: var(--accent);
+      border: none;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 320px;
+      border-radius: .6rem;
+      overflow: hidden;
+      border: 1px solid #e6e9ee;
+    }
+    .contact-cta {
+      text-align: center;
+      font-size: 1.16rem;
+      margin-top: 2.5rem;
+      font-weight: 500;
+    }
+
+    /* HOURS TABLE */
+    .hours-table {
+      margin-top: 30px;
+      max-width: 400px;
+      color: #111827;
+    }
+    .hours-table h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+      color: var(--accent);
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 6px;
+      letter-spacing: 0.4px;
+      font-weight: 600;
+    }
+    .hours-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      color: #1f2937;
+    }
+    .hours-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid #d1d5db;
+    }
+    .hours-table tr:last-child td {
+      border-bottom: none;
+    }
+    .hours-table td:first-child {
+      font-weight: 500;
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      color: #374151;
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #00264d;
+      color: #fff;
+      text-align: center;
+      padding: 1.8rem 0;
+      font-size: 0.9rem;
+      border-top: 3px solid #001a33;
+    }
+    footer small {
+      color: #e5e7eb;
+      letter-spacing: 0.3px;
+    }
+    .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 45vh;
+  color: #fff;
+  background: url('contact.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('contact.jpg') center/cover no-repeat;
+  filter: blur(6px);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">Pogue Calvert LLP</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <p class="mt-3">We’re here to help you with what matters most. Book your confidential consultation below.</p>
+    </div>
+  </header>
+
+  <section class="contact-bar reveal">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 contact-details">
+          <h2 class="section-title">Get In Touch</h2>
+          <p><strong>Address:</strong> 6920 Santa Teresa Blvd #102, San Jose, CA 95119</p>
+          <p><strong>Phone:</strong> <a href="tel:+14082583250" style="color:var(--accent);text-decoration:none;">(408) 258-3250</a></p>
+          <p><strong>Email:</strong> <a href="mailto:ana@poguecalvert.com" style="color:var(--accent);text-decoration:none;">ana@poguecalvert.com</a></p>
+
+          <div class="hours-table">
+            <h3>Office Hours</h3>
+            <table>
+              <tr><td>Monday</td><td>9 am–5 pm</td></tr>
+              <tr><td>Tuesday</td><td>9 am–5 pm</td></tr>
+              <tr><td>Wednesday</td><td>9 am–5 pm</td></tr>
+              <tr><td>Thursday</td><td>9 am–5 pm</td></tr>
+              <tr><td>Friday</td><td>9 am–12 pm</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="map-placeholder">
+            <iframe src="https://www.google.com/maps?q=6920+Santa+Teresa+Blvd,+San+Jose,+CA+95119&output=embed"
+              width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">Prefer to meet virtually? Let us know in your message!</div>
+    </div>
+  </section>
+
+  <section class="container py-5 reveal">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <h2 class="section-title text-center">Contact Form</h2>
+        <form>
+          <div class="mb-3">
+            <label for="contactName" class="form-label">Your Name*</label>
+            <input type="text" class="form-control" id="contactName" required>
+          </div>
+          <div class="mb-3">
+            <label for="contactEmail" class="form-label">Your Email*</label>
+            <input type="email" class="form-control" id="contactEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="contactPhone" class="form-label">Phone (optional)</label>
+            <input type="tel" class="form-control" id="contactPhone">
+          </div>
+          <div class="mb-3">
+            <label for="contactReason" class="form-label">Reason for Contact*</label>
+            <select class="form-select" id="contactReason" required>
+              <option value="">Choose...</option>
+              <option>Consultation</option>
+              <option>Document Review</option>
+              <option>Family Law Question</option>
+              <option>Estate Planning</option>
+              <option>Real Estate/Business Law</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="contactMessage" class="form-label">Your Message*</label>
+            <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4 py-2">Send Message</button>
+          </div>
+        </form>
+        <div class="text-muted small mt-3 text-center">
+          Your information is kept confidential and only used for scheduling your consult or resolving your issue.
+        </div>
+        <div class="text-muted small mt-2 text-center"><u>
+  Until and unless we are retained to represent you, no attorney-client relationship is created. </u>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container text-center">
+      <div class="mb-2">&copy; <span id="year"></span> Pogue Calvert LLP. All rights reserved.</div>
+      <div><small>Trusted legal counsel — San Jose & the Bay Area</small></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function(){
+      const navbar=document.querySelector('.navbar');
+      const reveals=document.querySelectorAll('.reveal');
+      const year=document.getElementById('year');
+      if(year)year.textContent=new Date().getFullYear();
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('in-view');
+            observer.unobserve(e.target);
+          }
+        });
+      },{threshold:0.15});
+      reveals.forEach(r=>observer.observe(r));
+      window.addEventListener('scroll',()=>{
+        if(window.scrollY>30)navbar.classList.add('nav-visible');
+        else navbar.classList.remove('nav-visible');
+      });
+    })();
+  </script>
+</body>
+</html>

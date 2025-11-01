@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pogue Calvert LLP — The Ones to Call When It's Important</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Playfair Display for logo serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --nav-color: 0,33,71; /* navy RGB */
+      --accent: #002b5c;
+      --muted: #6b7280;
+      --hero-overlay: 1; /* JS will update */
+    }
+
+    html,body { height:100%; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin:0; color:#111827; background:#fff;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      transition: background-color .45s ease, box-shadow .35s ease, transform .35s ease, opacity .4s ease;
+      background-color: rgba(var(--nav-color), 0); /* transparent initially */
+      box-shadow: none;
+      padding: 1rem 0;
+      backdrop-filter: none;
+      opacity: 0.98;
+    }
+    .navbar .navbar-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: #fff;
+      letter-spacing: .2px;
+    }
+    .navbar .nav-link { color: rgba(255,255,255,0.95); }
+    .navbar .navbar-toggler { border-color: rgba(255,255,255,0.2); }
+
+    /* navbar when scrolled (becomes visible/translucent) */
+    .navbar.nav-visible {
+      background-color: rgba(var(--nav-color), 0.82);
+      box-shadow: 0 6px 18px rgba(189, 191, 197, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    /* HERO */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 72vh;
+  color: #fff;
+  padding: 3.5rem 1rem;
+  background-color: #001f3f; /* fallback color */
+  overflow: hidden;
+}
+
+/* Blurred background image layer */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('lawyerimg.jpeg') center center / cover no-repeat;
+  filter: blur(4px);        /* controls the blur intensity */
+  transform: scale(1.05);   /* slight scale to avoid edge clipping */
+  z-index: 0;
+}
+
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.hero .hero-content {
+  position: relative;
+  z-index: 2; 
+  max-width: 960px;
+}
+
+
+    .hero .hero-content { position: relative; z-index: 2; max-width:960px; }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin:0 0 .5rem;
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .hero p { margin:0; color: rgba(255,255,255,0.92); font-size:1.05rem; }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      margin-bottom: .8rem;
+      font-size:1.45rem;
+    }
+
+    /* CONTENT LAYOUT */
+    section { padding: 4.2rem 0; }
+
+    /* Service cards */
+    .services .card {
+      border: none;
+      box-shadow: 0 6px 20px rgba(8,15,30,0.06);
+      transition: transform .28s ease, box-shadow .28s ease;
+      border-radius: .6rem;
+    }
+    .services .card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(8,15,30,0.09); }
+
+    /* Testimonials */
+    .testimonial {
+      border-radius: .6rem;
+      padding: 1.2rem;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(8,15,30,0.05);
+    }
+
+    /* Contact map */
+    .map-placeholder {
+      width:100%; height:320px; border-radius:.6rem; overflow:hidden; border:1px solid #e6e9ee;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #001f3f;
+      color: #fff; padding: 2.4rem 0; font-size:.95rem;
+    }
+
+    /* ANIMATIONS: initial hidden -> in-view */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .lawimg {
+      background-image: 'lawyerimg.jpg';
+    }
+
+    .hero .reveal { transition-duration:.6s; transition-timing-function:cubic-bezier(.0,.0,.2,1); }
+
+    /* responsiveness */
+    @media (max-width: 768px) {
+      .navbar { padding: .85rem 0; }
+      .hero { padding: 3rem 1rem; min-height:62vh; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pogue Calvert LLP</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1) sepia(1) saturate(0.1) hue-rotate(180deg) brightness(200%);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero" style="background-image: 'lawyerimg.jpg';">
+    <div class="hero-content container">
+      <div id="lawimg" class="reveal">
+        <h1>The Ones to Call When It’s Important</h1>
+        <p class="mt-3">Serving San Jose and the Bay Area since 1992</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h2 class="section-title">About Our Firm</h2>
+        <p class="lead reveal">Pogue Calvert LLP is a San Jose–based law firm offering experienced representation in civil litigation, family law, estate planning, and probate. Since 1992, we’ve combined strategic advocacy with personal service to get results our clients can depend on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTILINGUAL -->
+  <section class="bg-light">
+    <div class="container text-center">
+      <div class="reveal">
+        <h2 class="section-title">Who to Call for Important Matters</h2>
+        <p class="mb-1">A quienes llamar para asuntos importantes</p>
+        <p class="mb-2">Para quem você deve ligar para assuntos importantes</p>
+        <div style="margin-top:.6rem; font-weight:600; color: var(--accent);">
+          We speak Spanish — Se Habla Español
+        </div>
+        <div style="margin-top:.6rem; font-weight:600; color: var(--accent);">
+          Portuguese spoken here — Fala-se Português
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="container services">
+    <div class="text-center">
+      <h2 class="section-title">Our Services</h2>
+    </div>
+
+    <div class="row g-4 mt-4">
+      <div class="col-md-4">
+        <div class="card p-4 h-100 reveal">
+          <h5 class="mb-2">Estate Planning</h5>
+          <p class="mb-0">Tailored wills, trusts, and probate planning to protect your legacy and family.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-4 h-100 reveal">
+          <h5 class="mb-2">Family Law</h5>
+          <p class="mb-0">Compassionate guidance through divorce, custody, and spousal support matters.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-4 h-100 reveal">
+          <h5 class="mb-2">Civil Litigation</h5>
+          <p class="mb-0">Skilled advocacy in business disputes, contracts, and civil claims.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="bg-light">
+    <div class="container text-center">
+      <h2 class="section-title">What Clients Say</h2>
+
+      <!-- Google Rating -->
+      <div class="reveal mt-2 mb-3 d-flex justify-content-center align-items-center gap-2" style="font-size:1.05rem; color:#002b5c; font-weight:500;">
+        <span>Rated</span>
+        <span style="font-size:1.2rem; font-weight:600;">4.6</span>
+        <span style="color:#fbbf24; font-size:1.1rem;">★</span>
+        <span>on Google</span>
+      </div>
+      <a href="https://maps.app.goo.gl/SuUegD1oCDBmkW4N9" target="_blank" rel="noopener noreferrer"
+         class="reveal text-decoration-none"
+         style="color:#2563eb; font-weight:500; font-size:.95rem;">
+         Find us on Google Maps →
+      </a>
+
+      <div class="row g-4 mt-4">
+        <div class="col-md-4">
+          <div class="testimonial reveal">
+            <p class="mb-2">"Nice to work with. He's been doing this a long time and knows what to do."</p>
+            <small class="text-muted">— Jim Cunningham</small>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="testimonial reveal">
+            <p class="mb-2">"Steve was a pleasure to work with, very knowledgeable, friendly and very efficient. He helped me start my corporation and made the process very easy. I would highly recommend."</p>
+            <small class="text-muted">— Naomi albor</small>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="testimonial reveal">
+            <p class="mb-2">"I have used Steve's service for my real estate needs. He also drafted a trust for me. Everything went smooth and was impressed on promptness of service.
+I highly recommend him for any legal needs or advice.
+Thank you Steve...
+You are truly God-sent...."</p>
+            <small class="text-muted">— Madie Pavon</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="mb-1"><strong>Address</strong>: 6920 Santa Teresa Blvd #102, San Jose, CA 95119</p>
+        <p class="mb-1"><strong>Phone</strong>: +1 408-258-3250</p>
+        <p class="mb-3"><strong>Email</strong>: ana@poguecalvert.com </p>
+        <p class="text-muted small"></p>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="map-placeholder reveal">
+          <iframe
+            src="https://www.google.com/maps?q=6920+Santa+Teresa+Blvd,+San+Jose,+CA+95119&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-5">
+  <div class="container text-center">
+    <div class="mb-2">&copy; <span id="year"></span> Pogue Calvert LLP. All rights reserved.</div>
+    <div><small>Trusted legal counsel — San Jose & the Bay Area</small></div>
+  </div>
+</footer>
+
+  </footer>
+
+  <!-- Bootstrap bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Inline script: hero fade, navbar visibility, one-time reveal for sections -->
+  <script>
+    (function(){
+      // Cache common elements
+      const navbar = document.querySelector('.navbar');
+      const hero = document.querySelector('.hero');
+      const reveals = Array.from(document.querySelectorAll('.reveal'));
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // IntersectionObserver for reveals -> adds 'in-view' once (one-time)
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target); // trigger once
+          }
+        });
+      }, { threshold: 0.12 });
+
+      reveals.forEach(r => revealObserver.observe(r));
+
+      // Navbar and hero subtle opacity adjustments on scroll
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      function onScroll(){
+        const sc = window.scrollY || window.pageYOffset;
+        // Show navbar when user scrolls at least 30px; add a subtle nav-visible class
+        if (sc > 30) navbar.classList.add('nav-visible');
+        else navbar.classList.remove('nav-visible');
+
+        // Calculate hero overlay variable: from 1 at top to 0.72 at 360px (subtle)
+        const maxScroll = 360;
+        const t = clamp(sc / maxScroll, 0, 1);
+        const overlay = (1 - (0.28 * t)).toFixed(3); // 1 -> 0.72
+        document.documentElement.style.setProperty('--hero-overlay', overlay);
+
+        // Slight parallax/shift for hero content (very subtle)
+        const heroContent = hero.querySelector('.hero-content');
+        if (heroContent) {
+          heroContent.style.transform = `translateY(${Math.round(clamp(sc * 0.02, 0, 18)) * -1}px)`;
+          heroContent.style.transition = 'transform .2s linear';
+        }
+      }
+
+      // first  check
+      onScroll();
+      // throttle scroll for perf (rAF-based)
+      let ticking = false;
+      window.addEventListener('scroll', function(){
+        if (!ticking) {
+          window.requestAnimationFrame(function(){
+            onScroll();
+            ticking = false;
+          });
+        }
+        ticking = true;
+      }, { passive: true });
+
+      // ensure nav is visible if user arrives scrolled (deep link)
+      window.addEventListener('load', onScroll);
+
+    })();
+  </script>
+</body>
+</html>
