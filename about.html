@@ -7,135 +7,151 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
-    :root{ --nav-color: 0,33,71;
-        --accent: #002b5c;
-        --muted: #6b7280; }
+    :root {
+      --nav-color: 0,33,71;
+      --accent: #002b5c;
+      --muted: #6b7280;
+    }
 
-    body { font-family: system-ui,
-        -apple-system, "Segoe UI",
-        Roboto, "Helvetica Neue", Arial;
-        color:#111827;
-        background:#fff;
-        scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #111827;
+      background: #fff;
+      scroll-behavior: smooth;
+    }
 
-    .navbar { background-color: rgba(var(--nav-color), 0); transition: background-color .45s ease, box-shadow .35s ease; }
+    .navbar {
+      background-color: rgba(var(--nav-color), 0);
+      transition: background-color .45s ease, box-shadow .35s ease;
+    }
 
-    .navbar.nav-visible { background-color: rgba(var(--nav-color), 0.82); box-shadow: 0 6px 18px rgba(189,191,197,.12); backdrop-filter: blur(6px); }
+    .navbar.nav-visible {
+      background-color: rgba(var(--nav-color), 0.82);
+      box-shadow: 0 6px 18px rgba(189,191,197,.12);
+      backdrop-filter: blur(6px);
+    }
 
-    .navbar-brand { font-family: "Playfair Display", serif; font-size: 1.4rem; color: #fff !important; }
+    .navbar-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: #fff !important;
+    }
 
-    .nav-link { color: rgba(255,255,255,0.95) !important; }
+    .nav-link {
+      color: rgba(255,255,255,0.95) !important;
+    }
 
-    .hero { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 48vh; color: #fff; background: url('building.png') center/cover no-repeat; }
-    .hero::after { content: ""; position: absolute; inset: 0; background-color: rgba(0,0,0,0.45); }
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 45vh;
+      color: #fff;
+      overflow: hidden;
+    }
 
-    .hero h1 { position: relative; z-index: 1; font-family: "Playfair Display", serif; font-size: clamp(2rem, 4vw, 3rem); margin: 0; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('building.png') center/cover no-repeat;
+      filter: blur(6px);
+      transform: scale(1.05);
+      z-index: 0;
+    }
 
-    .section-title { font-family: "Playfair Display", serif; color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
 
-    .reveal { opacity: 0; transform: translateY(18px); transition: .6s ease; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+      font-weight: 600;
+    }
 
-    .attorney-card { border: none; box-shadow: 0 6px 20px rgba(8,15,30,0.06); border-radius: .6rem; padding: 1.5rem; background: #fff; transition: transform .2s ease, box-shadow .2s ease; }
+    .section-title {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
 
-    .attorney-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 30px rgba(8,15,30,0.09); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s ease;
+    }
 
-    .bio-photo { width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 1rem;
-        box-shadow: 0 2px 10px rgba(8,15,30,0.12); }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .about-mission {
-        background: #f6f8fb;
-        border-radius: .6rem;
-        padding: 1.5rem;
-        margin-bottom: 2rem; }
-
-    .testimonials { background: #fff;
-        border-radius: .6rem;
-        padding: 1.2rem;
-        box-shadow: 0 6px 20px rgba(189,191,197,0.07);
-        margin-bottom: 2rem; }
-
-    .history-timeline {
-        margin-bottom: 2.5rem; 
+      background: #f6f8fb;
+      border-radius: .6rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .timeline-event { border-left: 3px solid var(--accent);
-        padding-left: 1rem;
-        margin-bottom: 1.2rem; }
+    .attorney-card {
+      border: none;
+      border-radius: .6rem;
+      background: #fff;
+      box-shadow: 0 6px 20px rgba(8,15,30,0.06);
+      padding: 1.5rem;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
 
-    .faqs { background: #f6f8fb;
-        padding:1.3rem 1.1rem;
-        margin-bottom:2rem;}
+    .attorney-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(8,15,30,0.09);
+    }
+
+    .bio-photo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(8,15,30,0.12);
+    }
+
+    .faqs {
+      background: #f6f8fb;
+      padding: 1.3rem 1.1rem;
+      margin-bottom: 2rem;
+    }
 
     .faq-q {
-        font-weight:600;
-        color:var(--accent);
+      font-weight: 600;
+      color: var(--accent);
     }
 
-    .awards { background: #fff;
-        padding:1.2rem;
-        border-radius:.6rem;
-        box-shadow:0 6px 20px rgba(189,191,197,0.11);}
-
-    footer { background: #001f3f;
-        color: #fff;
-        padding: 2rem 0;
-        font-size: .95rem; }
-.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 45vh;
-  color: #fff;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('building.png') center/cover no-repeat;
-  filter: blur(6px);
-  transform: scale(1.05);
-  z-index: 0;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.55);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin: 0;
-  font-weight: 600;
-}
-
-    
+    footer {
+      background: #001f3f;
+      color: #fff;
+      padding: 2rem 0;
+      font-size: .95rem;
+    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand" href="homepage.html">Pogue Calvert LLP</a>
@@ -153,24 +169,24 @@
     </div>
   </nav>
 
-<header class="hero">
-  <div class="hero-content">
-    <h1>Your Advocates in the Bay Area</h1>
-  </div>
-</header>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Your Advocates in the Bay Area</h1>
+    </div>
+  </header>
 
-<!-- Our Mission Full Bar -->
-<section style="background: #f6f8fb; width:100%;">
-  <div class="container-fluid py-5 about-mission reveal" style="max-width:100vw;">
-    <h2 class="section-title text-center">Our Mission</h2>
-    <p class="lead text-center mb-2">
-      Since 1992, Pogue Calvert LLP has provided client-focused counsel, serving San Jose and the Bay Area with integrity and commitment.
-    </p>
-    <p class="text-center">Protecting your rights, preserving your interests, and delivering results for families, businesses, and individuals facing complex legal decisions is our priority.</p>
-  </div>
-</section>
+  <section style="background:#f6f8fb;width:100%;">
+    <div class="container-fluid py-5 about-mission reveal" style="max-width:100vw;">
+      <h2 class="section-title text-center">Our Mission</h2>
+      <p class="lead text-center mb-2">
+        Since 1992, Pogue Calvert LLP has provided client-focused counsel, serving San Jose and the Bay Area with integrity and commitment.
+      </p>
+      <p class="text-center">
+        Protecting your rights, preserving your interests, and delivering results for families, businesses, and individuals facing complex legal decisions is our priority.
+      </p>
+    </div>
+  </section>
 
-  <!-- Attorneys Section -->
   <section class="container">
     <div class="text-center mb-4"><h2 class="section-title">Meet Our Attorneys</h2></div>
     <div class="row g-4 justify-content-center">
@@ -179,9 +195,7 @@
           <img src="stevenpogue.jpg" alt="Steven Pogue" class="bio-photo mb-2">
           <h5>Steven Pogue</h5>
           <p class="text-muted"><strong>Partner</strong> · Estate Planning, Real Estate & Business Law</p>
-          <p>
- With over three decades of legal experience, Steven is known for his creative solutions and a careful, client-first approach. He’s helped countless Bay Area families and business owners secure their legacies and navigate real estate challenges.
-          </p>
+          <p>With over three decades of legal experience, Steven is known for his creative solutions and a careful, client-first approach. He’s helped countless Bay Area families and business owners secure their legacies and navigate real estate challenges.</p>
         </div>
       </div>
       <div class="col-md-5">
@@ -189,17 +203,15 @@
           <img src="robertcalvert.jpg" alt="Robert Calvert" class="bio-photo mb-2">
           <h5>Robert Calvert</h5>
           <p class="text-muted"><strong>Partner</strong> · Family Law & Civil Litigation</p>
-          <p>
-With over three decades of legal experience, Robert is known for his strategic thinking and compassionate approach. He has successfully represented numerous clients in high-stakes family law cases and complex civil litigation matters.
+          <p>With over three decades of legal experience, Robert is known for his strategic thinking and compassionate approach. He has successfully represented numerous clients in high-stakes family law cases and complex civil litigation matters.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Practice Areas Overview -->
   <section class="container reveal">
     <h2 class="section-title">Our Practice Areas</h2>
-    <ul class="list-unstyled" style="margin-bottom:.6rem;">
+    <ul class="list-unstyled mb-2">
       <li>• Estate Planning: Wills, trusts, probate, asset protection</li>
       <li>• Family Law: Divorce, custody, support, mediation</li>
       <li>• Civil Litigation: Contracts, business disputes, settlements</li>
@@ -207,28 +219,71 @@ With over three decades of legal experience, Robert is known for his strategic t
     </ul>
     <div class="text-muted small">Visit our <a href="homepage.html#services">Services</a> page for more details.</div>
   </section>
-<!-- FAQs Full Bar -->
-<section style="background: #f6f8fb; width:100%;">
-  <div class="container-fluid py-5 faqs reveal" style="max-width:100vw;">
-    <h2 class="section-title text-center">Frequently Asked Questions</h2>
-    <div class="faq-q mt-0 text-center">What is your fee structure?</div>
-    <div class="text-center">We offer transparent and fair fees, including flat rates for estate planning and hourly/project-based billing for litigation. Please contact us for a personalized estimate.</div>
-    <div class="faq-q mt-4 text-center">How do I get started?</div>
-    <div class="text-center">Just call or email us. We’ll schedule an introductory consult and outline next steps tailored to your legal needs.</div>
-    <div class="faq-q mt-4 text-center">What should I bring to my first meeting?</div>
-    <div class="text-center">Bring any related documents (contracts, court notices, previous agreements) and write down your goals and questions. We’ll guide you from there.</div>
-  </div>
-</section>
+
+    <section class="container text-center reveal my-5">
+    <h2 class="section-title">What Our Clients Think About Us</h2>
+    <div class="row g-4 justify-content-center">
+      
+      <div class="col-md-8">
+        <div class="attorney-card" style="padding:2rem;">
+          <p class="mb-3">
+            “Andrew Calvert was a beacon—a light of hope to my family at a time when our options appeared limited and the likelihood of a satisfactory resolution seemed unknown. 
+            Not only was he able to represent me during a move-away hearing, but he had also helped guide me through mediation three years prior, 
+            where I was granted sole physical custody of my daughter. At that time, Andrew and I both knew, given the evidence, that it was what was best for my daughter. 
+            His calm and empathetic demeanor offered emotional support to me and my family, for which we are eternally grateful.”
+          </p>
+          <p class="mb-3">
+            “During our move-away and custody ex parte hearing, Andrew demonstrated assertiveness, not aggressiveness—showing utmost respect to the courtroom and reflecting his professionalism. 
+            He is quick to answer, reliable, responsive, and always prepared. Andrew is honest, and his firm will not take advantage of you or your wallet.”
+          </p>
+          <p class="mb-4">
+            “Lastly, I just want to say I admire what attorneys do day in and day out. If you hire a great attorney—not just good, but great—you will see their brilliance like I see in Andrew.”
+          </p>
+          <div class="text-muted"><strong>— Stephanie Roberts</strong><br><small>Family Law Client</small></div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="attorney-card" style="padding:2rem;">
+          <p class="mb-3">
+            “Highly recommended, a truly outstanding attorney.”
+          </p>
+          <p class="mb-3">
+            “Going through a divorce was one of the hardest experiences of my life, but having Andrew on my side made all the difference. 
+            He was professional, honest, and incredibly supportive from start to finish. He explained everything clearly, answered every question, and always made me feel heard.”
+          </p>
+          <p class="mb-3">
+            “What I appreciated most was how calm, confident, and prepared he was. He fought for what mattered without creating extra conflict, and I always felt protected and respected.”
+          </p>
+          <p class="mb-4">
+            “Because of Andrew, I got a fair outcome and could move forward with peace of mind. 
+            If you need a divorce lawyer who is smart, caring, and truly on your side, this is the person to hire.”
+          </p>
+          <div class="text-muted"><strong>— Julie K.</strong><br><small>Divorce Client</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-  <!-- Call to Action -->
-  <section class="container text-center reveal" style="margin-bottom:2.5rem;">
+  <section style="background:#f6f8fb;width:100%;">
+    <div class="container-fluid py-5 faqs reveal" style="max-width:100vw;">
+      <h2 class="section-title text-center">Frequently Asked Questions</h2>
+      <div class="faq-q mt-0 text-center">What is your fee structure?</div>
+      <div class="text-center">We offer transparent and fair fees, including flat rates for estate planning and hourly/project-based billing for litigation. Please contact us for a personalized estimate.</div>
+      <div class="faq-q mt-4 text-center">How do I get started?</div>
+      <div class="text-center">Just call or email us. We’ll schedule an introductory consult and outline next steps tailored to your legal needs.</div>
+      <div class="faq-q mt-4 text-center">What should I bring to my first meeting?</div>
+      <div class="text-center">Bring any related documents (contracts, court notices, previous agreements) and write down your goals and questions. We’ll guide you from there.</div>
+    </div>
+  </section>
+
+  <section class="container text-center reveal mb-5">
     <h2 class="section-title">Ready to Talk?</h2>
     <p class="lead">Contact us today for a confidential consultation or to ask about your legal options.</p>
     <a href="homepage.html#contact" class="btn btn-primary px-4 py-2" style="font-size:1.15rem;background:var(--accent);border:none;">Schedule a Consultation</a>
   </section>
 
-  <!-- Footer -->
   <footer class="mt-5">
     <div class="container text-center">
       <div class="mb-2">&copy; <span id="year"></span> Pogue Calvert LLP. All rights reserved.</div>
